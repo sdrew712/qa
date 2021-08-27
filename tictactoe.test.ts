@@ -1,4 +1,4 @@
-import { Builder, Capabilities, By } from "selenium-webdriver"
+import { Builder, Capabilities, By, WebDriver } from "selenium-webdriver"
 
 const chromedriver = require('chromedriver')
 
