@@ -52,5 +52,5 @@ test("game displays correct winner", async () => {
     
     let winner = await driver.wait(driver.findElement(By.xpath("/html/body/h1")).getAttribute("textContent"))
     
-    expect(winner).toEqual("X lost")
+    expect(winner).toEqual("X won")
 })
