@@ -39,10 +39,8 @@ test("game displays a winner", async () => {
 })
 
 test("game displays correct winner", async () => {
-
-    await driver.sleep(5000)
-
-    let winnerText = await driver.findElement(By.id("winner"))
-
-    expect(winnerText.getAttribute("textContent")).toEqual("X lost")
+    
+    let winner = await driver.wait(driver.findElement(By.id("winner")).getAttribute("textContent"))
+    
+    expect(winner).toEqual("X lost")
 })
