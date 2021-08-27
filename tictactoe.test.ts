@@ -22,25 +22,35 @@ test('I can start a game', async () => {
 test('I can click the upper left square', async () => {
     let upperLeftSquare = await driver.findElement(By.id('cell-0'))
     await upperLeftSquare.click();
+
+    let upperLeftSquareSymbol = await driver.wait(driver.findElement(By.id('cell-0')).getAttribute("textContent"))
+
+    expect(upperLeftSquareSymbol).toEqual('X')
 })
 
-test("game displays a winner", async () => {
+test("I can click the middle row", async () => {
     let upperMiddleSquare = await driver.findElement(By.id('cell-1'))
     let middleSquare = await driver.findElement(By.id('cell-4'))
     let bottomMiddleSquare = await driver.findElement(By.id('cell-7'))
 
-    await upperMiddleSquare.click()
-    await middleSquare.click()
-    await bottomMiddleSquare.click()
+    await upperMiddleSquare.click();
+    await middleSquare.click();
+    await bottomMiddleSquare.click();
 
-    let winnerText = await driver.findElement(By.id("winner"))
+    let upperMiddleSquareSymbol = await driver.wait(driver.findElement(By.id('cell-1')).getAttribute("textContent"))
+    let middleSquareSymbol = await driver.wait(driver.findElement(By.id('cell-4')).getAttribute("textContent"))
+    let bottomMiddleSquareSymbol = await driver.wait(driver.findElement(By.id('cell-7')).getAttribute("textContent"))
 
-    expect(winnerText).not.toBeNull
+    expect(upperMiddleSquareSymbol).toEqual('X')
+    expect(middleSquareSymbol).toEqual('X')
+    expect(bottomMiddleSquareSymbol).toEqual('X')
+
+    await driver.sleep(5000)
 })
 
 test("game displays correct winner", async () => {
     
-    let winner = await driver.wait(driver.findElement(By.id("winner")).getAttribute("textContent"))
+    let winner = await driver.wait(driver.findElement(By.xpath("/html/body/h1")).getAttribute("textContent"))
     
     expect(winner).toEqual("X lost")
 })
